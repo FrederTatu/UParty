@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# Зарегистрированные приложения (здесь должны быть указаны все startapp приложения, которые мы создаем командой "django-admin", иначе django их не сможет определить)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'main_app',
     'moods'
 ]
 
@@ -52,6 +54,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'UParty_project.urls'
 
+# Здесь распологаются шаблоны FrontEnd'да проекта (то есть .html файлы страниц). Указывается папка, в которой распологаются эти файлы (templates)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -73,10 +76,11 @@ WSGI_APPLICATION = 'UParty_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# БДшки проекта
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'dev_roman.db', # Кто будет работать с БД, изменяйте название на свое (стандарт названий указан в ДИЗДОКЕ (пункт 11.5))
     }
 }
 

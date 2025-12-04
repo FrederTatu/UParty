@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Главный файл, который запускает весь django-проект. (Команда - ./manage.py runserver). PS. Обязательно нужно находится в терминале в той же папке, где и находится этот файл, чтобы терминал его определил
 """Django's command-line utility for administrative tasks."""
 import os
 import sys

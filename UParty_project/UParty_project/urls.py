@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+# Здесь мы импортируем функцию определения рендера страницы по переходу пользователя по ссылке из файла views.py, чтобы применить ее здесь
 from main_app.views import main_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Здесь мы соответственно указываем путь, по которому будет направлен пользователь. '' - стандартное определение главной (основной) страницы. Файл index.html указан в этой функции в файле views.py
     path('', main_page)
 ]
