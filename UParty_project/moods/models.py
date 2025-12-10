@@ -1,113 +1,24 @@
 from django.db import models
-
-# Create your models here.
-
-# Импортируем необходимые модули Django
-from django.utils.translation import gettext_lazy as _  # Для поддержки перевода (i18n)
-
+from django.utils.translation import gettext_lazy as _
 
 class MoodTag(models.Model):
     """
-    Модель тега настроения (Mood Tag) для категоризации мероприятий.
-    
-    Каждый тег представляет собой категорию настроения (например, "Романтика", "Активный отдых").
-    Теги привязываются к мероприятиям для фильтрации и рекомендаций.
-    
-    Атрибуты:
-        name (CharField): Человеко-читаемое название тега
-        code (CharField): Машинный код для использования в URL и API
-        color (CharField): Цвет тега в HEX-формате (#RRGGBB)
-        emoji (CharField): Эмодзи, представляющая тег
-        description (TextField): Подробное описание тега
-        sort_order (IntegerField): Порядок сортировки тегов (меньше = выше)
-        is_active (BooleanField): Флаг активности тега (можно скрывать неактивные)
-        created_at (DateTimeField): Дата и время создания записи
-        updated_at (DateTimeField): Дата и время последнего обновления
+    Модель тега настроения.
+    Таблица moods_modtag существует, но ПУСТАЯ.
     """
     
-    # Текстовые поля модели
-    
-    # Название тега (например, "Активный отдых")
-    # CharField - поле для хранения строк фиксированной длины
-    # max_length=50 - максимальная длина 50 символов
-    # verbose_name - человеко-читаемое имя поля (отображается в админке)
-    # _() - функция для перевода (gettext_lazy) - если позже добавите мультиязычность
     name = models.CharField(
         max_length=50,
         verbose_name=_("Название тега"),
-        help_text=_("Человеко-читаемое название тега настроения")
+        help_text=_("Человеко-читаемое название тега настроения"),
+        db_column='moodtag_name'  # Используем имя столбца из БД
     )
     
-    # Код тега для использования в URL и программировании (например, "active")
-    # unique=True - гарантирует, что коды не повторяются в базе
-    # db_index=True - создает индекс в БД для ускорения поиска по этому полю
-    code = models.CharField(
-        max_length=20,
-        unique=True,
-        verbose_name=_("Код тега"),
-        help_text=_("Уникальный код для использования в URL и API (латинскими буквами)"),
-        db_index=True  # Индекс ускоряет поиск по этому полю
-    )
-    
-    # Цвет тега в HEX-формате (например, "#FF5733" для оранжевого)
-    # default="#6366f1" - значение по умолчанию (фиолетовый)
-    # Валидацию цвета можно добавить позже (проверка формата #RRGGBB)
-    color = models.CharField(
-        max_length=7,
-        default="#6366f1",
-        verbose_name=_("Цвет тега"),
-        help_text=_("Цвет в HEX-формате (#RRGGBB) для отображения на сайте")
-    )
-    
-    # Эмодзи для визуального представления тега
-    # blank=True - поле может быть пустым (необязательное)
-    # null=True - в БД может храниться NULL
-    emoji = models.CharField(
-        max_length=5,
-        blank=True,
-        null=True,
-        verbose_name=_("Эмодзи"),
-        help_text=_("Эмодзи, представляющая настроение (например, 😊, 🎉)")
-    )
-    
-    # Подробное описание тега
-    # TextField - для хранения больших текстов (без ограничения длины)
-    # blank=True - необязательное поле
-    description = models.TextField(
-        verbose_name=_("Описание"),
-        help_text=_("Подробное описание тега настроения"),
-        blank=True  # Поле может быть пустым
-    )
-    
-    # Числовые и логические поля
-    
-    # Порядок сортировки тегов
-    # default=0 - по умолчанию 0
-    # Позволяет управлять порядком отображения тегов на сайте
-    sort_order = models.IntegerField(
-        default=0,
-        verbose_name=_("Порядок сортировки"),
-        help_text=_("Чем меньше число, тем выше в списке будет тег")
-    )
-    
-    # Флаг активности тега
-    # default=True - по умолчанию все теги активны
-    # Позволяет временно скрывать теги без удаления
-    is_active = models.BooleanField(
-        default=True,
-        verbose_name=_("Активен"),
-        help_text=_("Отображать ли этот тег на сайте")
-    )
-    
-    # Автоматически заполняемые поля (дата/время)
-    
-    # Дата и время создания записи
-    # auto_now_add=True - автоматически устанавливается при создании
-    # editable=False - нельзя редактировать вручную
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name=_("Дата создания"),
-        editable=False  # Нельзя редактировать вручную
+        editable=False,
+        db_column='moodtag_created'
     )
     
     # Дата и время последнего обновления записи
@@ -116,82 +27,28 @@ class MoodTag(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True,
         verbose_name=_("Дата обновления"),
-        editable=False
+        editable=False,
+        db_column='moodtag_updated'
     )
     
     # Метаданные модели (настройки для Django)
     class Meta:
         """
-        Класс Meta содержит метаданные о модели.
-        Эти настройки влияют на поведение модели в админке и при работе с БД.
+        НЕТ managed = False! Потому что:
+        1. Таблица пустая - нечего терять
+        2. Хотим, чтобы Django управлял структурой
+        3. Удобно для будущих изменений
         """
-        # Человеко-читаемое имя модели (единственное число)
+        db_table = 'moods_moodtag'  # Указываем имя существующей таблицы
         verbose_name = _("Тег настроения")
         
         # Человеко-читаемое имя модели во множественном числе
         verbose_name_plural = _("Теги настроения")
-        
-        # Поле для сортировки по умолчанию
-        # Сначала по sort_order (возрастание), потом по name
-        ordering = ["sort_order", "name"]
-        
-        # Дополнительные индексы для оптимизации БД
-        # Составной индекс для ускорения частых запросов
-        indexes = [
-            # Индекс для часто используемых фильтров
-            models.Index(fields=['is_active', 'sort_order']),
-        ]
+        ordering = ["name"]
     
-    # Магический метод для строкового представления объекта
     def __str__(self):
         """
         Возвращает строковое представление объекта.
         Используется в админке Django, shell, отладочных сообщениях.
         """
-        # Если есть эмодзи, показываем её, иначе только название
-        if self.emoji:
-            return f"{self.emoji} {self.name}"
         return self.name
-    
-    # Пользовательские методы модели
-    def get_css_color(self):
-        """
-        Возвращает CSS-совместимое значение цвета.
-        
-        Возвращает:
-            str: CSS-значение цвета (если HEX) или имя цвета
-        """
-        if self.color.startswith("#"):
-            return self.color
-        # Если цвет задан словом (например, "red"), возвращаем как есть
-        return self.color
-    
-    def get_absolute_url(self):
-        """
-        Возвращает канонический URL для объекта.
-        Полезно для админки и при создании сайта.
-        
-        Примечание: Пока URL не настроен, возвращает заглушку.
-        Позже нужно будет создать соответствующий URL pattern.
-        """
-        # Пока используем заглушку. Когда создадим представление для тегов,
-        # нужно будет раскомментировать и импортировать reverse:
-        # from django.urls import reverse
-        # return reverse('mood-detail', kwargs={'code': self.code})
-        return f"/moods/{self.code}/"
-    
-    def deactivate(self):
-        """
-        Деактивирует тег (устанавливает is_active=False).
-        
-        Используется для мягкого удаления тега без фактического удаления из БД.
-        """
-        self.is_active = False
-        self.save(update_fields=['is_active', 'updated_at'])
-    
-    def activate(self):
-        """
-        Активирует тег (устанавливает is_active=True).
-        """
-        self.is_active = True
-        self.save(update_fields=['is_active', 'updated_at'])

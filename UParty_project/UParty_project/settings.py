@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'UParty_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'dev_roman.db', # Кто будет работать с БД, изменяйте название на свое (стандарт названий указан в ДИЗДОКЕ (пункт 11.5))
+        'NAME': BASE_DIR / 'UParty_Database.db', # Кто будет работать с БД, изменяйте название на свое (стандарт названий указан в ДИЗДОКЕ (пункт 11.5))
     }
 }
 
