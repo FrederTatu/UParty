@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+</head>
+
+<body>
+    <div>
+        <a href="{% url 'app:main' %}">Добавить мероприятие</a>
+    </div>
+    <div>
+
+        {% for e in eventlist %}
+        <div>
+            <div>Название события: <span>{{ e.event_name }}</span> </div>
+            <div>Описание события: {{e.event_text}}</div>
+            <div>{{e.event_time_begin}}</div>
+            <div>{{e.event_time_end}}</div>
+            <div>{{e.event_price}} &#8381;</div>
+            <div>{{e.event_latitude}}</div>
+            <div>{{e.event_longitude}}</div>
+
+
+              <div>
+                {% if e.event_url %}
+                    <a href="{{ e.event_url }}" target="_blank" class="map-button">
+                        Посмотреть на карте
+                    </a>
+                {% else %}
+                  
+                    <a href="https://yandex.ru/maps/195/ulyanovsk/?ll=48.403131%2C54.314194&z=14" 
+                       target="_blank" class="map-button">
+                        Посмотреть на карте (Ульяновск)
+                    </a>
+                {% endif %}
+            </div>
+
+            <div>Максимальное количество участников: {{ e.event_max_participants }}</div>
+            
+            
+            <div>
+                
+                Создатель: 
+                {% if e.event_creator %}
+                    {{ e.event_creator.username }}
+                {% else %}
+                    Не указан
+                {% endif %}
+            </div>
+            
+            <div>Статус: {{ e.get_event_status_display }}</div>
+            
+            <div>
+               
+                Осталось мест: {{ e.event_remaining_seats }}
+            </div>
+
+
+
+
+    
+        
+
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+
+</body>
+
+</html>

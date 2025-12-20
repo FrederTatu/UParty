@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main_app',
+    'events',
     'moods'
 ]
 
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'UParty_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'UParty_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'UParty_Database.db', # Кто будет работать с БД, изменяйте название на свое (стандарт названий указан в ДИЗДОКЕ (пункт 11.5))
+        'NAME': BASE_DIR / 'Roma.db', # Кто будет работать с БД, изменяйте название на свое (стандарт названий указан в ДИЗДОКЕ (пункт 11.5))
     }
 }
 
@@ -115,6 +115,11 @@ USE_I18N = True
 
 USE_TZ = True
 
+LANGUAGE_CODE = 'ru-ru'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+TIME_ZONE = 'Europe/Moscow'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
