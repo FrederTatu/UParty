@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="text-align: center; padding: 50px 20px;">
+    <div style="font-size: 80px; margin-bottom: 20px;">🔒</div>
+    <h2>Профиль скрыт</h2>
+    <p style="color: #666; max-width: 500px; margin: 20px auto;">
+        Пользователь <strong>@{{ username }}</strong> ограничил доступ к своему профилю.
+    </p>
+    <div style="margin-top: 30px;">
+        <a href="{% url 'profile' %}"><button>← Вернуться к моему профилю</button></a>
+    </div>
+</div>
+{% endblock %}
