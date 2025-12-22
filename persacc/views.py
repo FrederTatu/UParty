@@ -90,7 +90,6 @@ def login_view(request):
         username_or_email = request.POST.get('username')
         password = request.POST.get('password')
 
-        # Проверяем, включена ли 2FA
         two_factor_enabled = request.POST.get('two_factor', 'off') == 'on'
 
         if '@' in username_or_email:
@@ -105,12 +104,9 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            # Если включена 2FA
             if two_factor_enabled:
-                # Генерируем код
                 code = generate_verification_code()
 
-                # Сохраняем в сессии
                 request.session['2fa_user_id'] = user.id
                 request.session['2fa_code'] = code
                 request.session['2fa_expiry'] = (timezone.now() + timezone.timedelta(minutes=10)).isoformat()
@@ -168,7 +164,6 @@ def verify_2fa(request):
 
 
 def resend_2fa_code(request):
-    """Повторная отправка кода 2FA"""
     user_id = request.session.get('2fa_user_id')
 
     if user_id:
