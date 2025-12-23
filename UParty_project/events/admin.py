@@ -4,7 +4,7 @@ from .models import Event
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
     # Поля в списке
-    list_display = ['id', 'event_name', 'event_status', 'event_time_begin', 'event_price']
+    list_display = ['id', 'event_name', 'event_status', 'event_time_begin', 'event_price', 'event_creator']
     
     # Фильтры справа
     list_filter = ['event_status', 'event_available', 'mood_tags']

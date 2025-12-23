@@ -5,5 +5,6 @@ app_name = 'app'
 
 urlpatterns = [
     path('adddb/', views.adddb, name='adddb'),
+    path('', views.main, name='main'),
     path('eventscatalog/', views.eventscatalog, name="eventscatalog")
 ]

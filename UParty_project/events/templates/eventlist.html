@@ -25,45 +25,46 @@
             <div>{{e.event_longitude}}</div>
 
 
-              <div>
+            <div>
                 {% if e.event_url %}
-                    <a href="{{ e.event_url }}" target="_blank" class="map-button">
-                        Посмотреть на карте
-                    </a>
+                <a href="{{ e.event_url }}" target="_blank" class="map-button">
+                    Посмотреть на карте
+                </a>
                 {% else %}
-                  
-                    <a href="https://yandex.ru/maps/195/ulyanovsk/?ll=48.403131%2C54.314194&z=14" 
-                       target="_blank" class="map-button">
-                        Посмотреть на карте (Ульяновск)
-                    </a>
+
+                <a href="https://yandex.ru/maps/195/ulyanovsk/?ll=48.403131%2C54.314194&z=14" target="_blank"
+                    class="map-button">
+                    Посмотреть на карте (Ульяновск)
+                </a>
                 {% endif %}
             </div>
 
             <div>Максимальное количество участников: {{ e.event_max_participants }}</div>
-            
-            
+
+
             <div>
-                
-                Создатель: 
+                Создатель:
                 {% if e.event_creator %}
+                <a href="{% url 'public_profile' e.event_creator.username %}">
                     {{ e.event_creator.username }}
+                </a>
                 {% else %}
-                    Не указан
+                Не указан
                 {% endif %}
             </div>
-            
+
             <div>Статус: {{ e.get_event_status_display }}</div>
-            
+
             <div>
-               
+
                 Осталось мест: {{ e.event_remaining_seats }}
             </div>
 
 
 
 
-    
-        
+
+
 
 
         </div>

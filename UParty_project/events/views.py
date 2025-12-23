@@ -2,9 +2,10 @@
 from django.shortcuts import render, redirect 
 from django.template.response import TemplateResponse
 from .models import Event
+from django.contrib.auth.models import User
 
 def main(request):
-    return TemplateResponse(request, "base.html")
+    return TemplateResponse(request, "basee.html")
  
 def adddb(request):
     if request.method == "POST":
@@ -33,8 +34,8 @@ def adddb(request):
             userevent.event_url = "https://yandex.ru/maps/195/ulyanovsk/?ll=48.403131%2C54.314194&z=14"
        
 
-        """ if request.user.is_authenticated:
-            userevent.event_creator_id = request.user """
+        if request.user.is_authenticated:
+            userevent.event_creator = request.user
         
         userevent.event_status = eventstatus if eventstatus else 'active'
        
