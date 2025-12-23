@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Безопасность</h2>
+<div style="max-width: 600px;">
+    <div style="border: 1px solid #ddd; padding: 20px; margin-bottom: 30px; border-radius: 5px;">
+        <h3>Смена пароля</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="operation" value="change_password">
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Текущий пароль:</label>
+                <input type="password" name="old_password" required
+                       style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Новый пароль:</label>
+                <input type="password" name="new_password1" required minlength="6"
+                       style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px;"
+                       placeholder="Минимум 6 символов">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px;">Повторите новый пароль:</label>
+                <input type="password" name="new_password2" required minlength="6"
+                       style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px;">
+            </div>
+            <button type="submit"
+                    style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 3px;">
+                Сменить пароль
+            </button>
+        </form>
+    </div>
+
+    <div style="border: 1px solid #ddd; padding: 20px; margin-bottom: 30px; border-radius: 5px;">
+        <h3>Смена email</h3>
+        <p style="color: #666; margin-bottom: 15px;">
+            После запроса на изменение email, на старый адрес придет код подтверждения
+        </p>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="operation" value="change_email">
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Текущий email:</label>
+                <input type="email" value="{{ user.email }}" disabled
+                       style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px; background: #f5f5f5;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Новый email:</label>
+                <input type="email" name="new_email" required
+                       style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px;"
+                       placeholder="Введите новый email">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px;">Текущий пароль:</label>
+                <input type="password" name="password" required
+                       style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px;"
+                       placeholder="Для подтверждения">
+            </div>
+            <button type="submit"
+                    style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 3px;">
+                Запросить смену email
+            </button>
+        </form>
+    </div>
+
+    <div style="border: 1px solid #ddd; padding: 20px; border-radius: 5px; background: #f8f9fa;">
+        <h3>Двухфакторная аутентификация</h3>
+        <p style="color: #666;">
+            При входе в аккаунт можно включить дополнительную проверку через код на email.
+            Доступно на странице входа.
+        </p>
+    </div>
+</div>
+
+<div style="margin-top: 30px;">
+    <a href="{% url 'profile' %}">
+        <button type="button" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 3px;">
+            Назад к профилю
+        </button>
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Настройки приватности</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div style="border: 1px solid #ddd; padding: 20px; margin: 20px 0;">
+        <h3>Кто видит мой профиль</h3>
+        <div style="margin: 15px 0;">
+            <label>
+                <input type="radio" name="profile_visibility" value="public"
+                       {% if user.profile.profile_visibility == 'public' %}checked{% endif %}>
+                <strong>Все</strong> - любой пользователь может просматривать ваш профиль
+            </label><br>
+
+            <label>
+                <input type="radio" name="profile_visibility" value="private"
+                       {% if user.profile.profile_visibility == 'private' %}checked{% endif %}>
+                <strong>Никто</strong> - ваш профиль скрыт от других пользователей
+            </label>
+        </div>
+    </div>
+
+    <div style="border: 1px solid #ddd; padding: 20px; margin: 20px 0;">
+        <h3>Участие в мероприятиях</h3>
+        <div style="margin: 15px 0;">
+            <label>
+                <input type="checkbox" name="show_events"
+                       {% if user.profile.show_events %}checked{% endif %}>
+                Показывать мое участие в мероприятиях
+            </label>
+            <p style="color: #666; margin: 5px 0 0 25px;">
+                Отображать мероприятия, в которых вы участвуете
+            </p>
+        </div>
+    </div>
+
+    <div style="border: 1px solid #ddd; padding: 20px; margin: 20px 0;">
+        <h3>Отзывы</h3>
+
+        <div style="margin: 15px 0;">
+            <label>
+                <input type="checkbox" name="show_reviews"
+                       {% if user.profile.show_reviews %}checked{% endif %}>
+                Разрешить отзывы на мой профиль
+            </label>
+        </div>
+
+        <div style="margin: 15px 0 0 25px;">
+            <p><strong>Кто может видеть отзывы:</strong></p>
+            <label>
+                <input type="radio" name="reviews_visibility" value="public"
+                       {% if user.profile.reviews_visibility == 'public' %}checked{% endif %}>
+                Все
+            </label><br>
+
+            <label>
+                <input type="radio" name="reviews_visibility" value="private"
+                       {% if user.profile.reviews_visibility == 'private' %}checked{% endif %}>
+                Никто (отзывы будут видны только вам)
+            </label>
+        </div>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <button type="submit" style="padding: 10px 30px;">Сохранить настройки</button>
+        <a href="{% url 'profile' %}"><button type="button">Отмена</button></a>
+    </div>
+</form>
+
+<hr style="margin: 30px 0;">
+<div style="background: #f8f9fa; padding: 15px; border-radius: 5px;">
+    <h4>Ссылка на ваш публичный профиль:</h4>
+    <p><code>http://localhost:8000/user/{{ user.username }}/</code></p>
+    <a href="{% url 'public_profile' user.username %}">
+        <button>Посмотреть как другие видят мой профиль</button>
+    </a>
+</div>
+{% endblock %}

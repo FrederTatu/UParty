@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="max-width: 400px; margin: 50px auto; text-align: center;">
+    <h2>Двухфакторная аутентификация</h2>
+    <div style="background: #e7f3ff; padding: 20px; border-radius: 5px; margin: 20px 0;">
+        <p>На ваш email <strong>{{ user.email }}</strong> отправлен 6-значный код подтверждения.</p>
+        <p style="color: #666; font-size: 14px;">Код действителен в течение 10 минут</p>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <div style="margin: 20px 0;">
+            <label style="display: block; margin-bottom: 10px; font-weight: bold;">Код подтверждения:</label>
+            <input type="text"
+                   name="code"
+                   maxlength="6"
+                   pattern="\d{6}"
+                   required
+                   style="width: 200px; padding: 15px; font-size: 18px; text-align: center; letter-spacing: 5px; border: 2px solid #007bff; border-radius: 5px;">
+            <div style="margin-top: 5px; color: #666; font-size: 14px;">
+                Введите 6 цифр
+            </div>
+        </div>
+        <button type="submit"
+                style="padding: 12px 30px; background: #007bff; color: white; border: none; border-radius: 5px; font-size: 16px; margin: 10px;">
+            Подтвердить
+        </button>
+    </form>
+    <div style="margin-top: 30px;">
+        <p>Не получили код?</p>
+        <a href="{% url 'resend_2fa_code' %}">
+            <button type="button" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 3px;">
+                Отправить код повторно
+            </button>
+        </a>
+    </div>
+    <div style="margin-top: 30px;">
+        <a href="{% url 'login' %}">
+            <button type="button" style="padding: 8px 15px; background: transparent; color: #666; border: 1px solid #ccc; border-radius: 3px;">
+                Вернуться к входу
+            </button>
+        </a>
+    </div>
+</div>
+{% endblock %}

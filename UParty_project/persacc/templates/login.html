@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Вход</h2>
+<form method="POST">
+    {% csrf_token %}
+    <div style="max-width: 400px;">
+        <div style="margin-bottom: 15px;">
+            <label>Имя пользователя или Email:</label><br>
+            <input type="text" name="username" required style="width: 100%; padding: 10px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label>Пароль:</label><br>
+            <input type="password" name="password" required style="width: 100%; padding: 10px;">
+        </div>
+        <div style="margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">
+            <label style="display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" name="two_factor" value="on">
+                <span><strong>Двухфакторная аутентификация</strong></span>
+            </label>
+            <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">
+                При включении на email придет код подтверждения
+            </p>
+        </div>
+        <button type="submit" style="padding: 10px 30px; background: #007bff; color: white; border: none;">
+            Войти
+        </button>
+    </div>
+</form>
+<p style="margin-top: 20px;">
+    Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a>
+</p>
+{% endblock %}

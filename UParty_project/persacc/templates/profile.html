@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Мой профиль</h2>
+
+<div style="display: flex; align-items: center; margin: 20px 0;">
+    {% if user.profile.avatar %}
+        <img src="{{ user.profile.avatar.url }}" width="100" style="border-radius: 50%; margin-right: 20px;">
+    {% endif %}
+
+    <div>
+        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+        <p>@{{ user.username }}</p>
+    </div>
+</div>
+
+<table>
+    <tr><td><strong>Email:</strong></td><td>{{ user.email }}</td></tr>
+    <tr><td><strong>Телефон:</strong></td><td>{{ user.profile.phone|default:"Не указан" }}</td></tr>
+    <tr><td><strong>Дата рождения:</strong></td><td>{{ user.profile.date_of_birth|default:"Не указана" }}</td></tr>
+    <tr><td><strong>Пол:</strong></td>
+        <td>
+            {% if user.profile.gender == 'male' %}Мужской
+            {% elif user.profile.gender == 'female' %}Женский
+            {% else %}Не указан
+            {% endif %}
+        </td>
+    </tr>
+</table>
+
+<p style="margin-top: 30px;">
+    <a href="{% url 'edit_profile' %}"><button>Редактировать профиль</button></a>
+    <a href="{% url 'account_security' %}"><button>Настройки безопасности</button></a>
+    <a href="{% url 'privacy_settings' %}"><button>Настройки приватности</button></a>
+</p>
+{% endblock %}
