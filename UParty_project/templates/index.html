@@ -1,0 +1,317 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="UPARTY – персональная афиша мероприятий. Найди свой Vibe в городе."
+    />
+    <link
+      rel="icon"
+      href="{% static 'assets/images/icons/user-profile.svg' %}"
+      type="image/svg+xml"
+    />
+    <link rel="stylesheet" href="{% static 'styles/base/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/base/variables.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/base/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
+    <title>UPARTY – Найди свой Vibe</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <div class="header_logo">
+            <a href="./index.html" aria-label="На главную">
+              <img
+                src="{% static 'assets/images/icons/logo-icon.svg' %}"
+                alt="UPARTY логотип"
+              />
+            </a>
+          </div>
+          <div class="header_user-menu">
+            <a
+              href="./home.html"
+              class="header__btn btn btn-white"
+              aria-label="Войти в аккаунт"
+            >
+              <h4>Войти</h4>
+            </a>
+            <button
+              class="header__btn btn btn-yellow"
+              aria-label="Зарегистрироваться"
+            >
+              <h4>Зарегистрироваться</h4>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Персональная афиша -->
+      <section class="playbill mt-60">
+        <div class="container">
+          <div class="playbill__title text-center mb-30">
+            <h1>Персональная афиша</h1>
+          </div>
+          <div class="playbill__text">
+            <h3 class="text-center mb-60">
+              Чем больше вы используете приложение, тем лучше мы понимаем ваш
+              вкус. Мы будем присылать только те события, которые вам
+              действительно интересны
+            </h3>
+          </div>
+          <div class="playbill__slider">
+            <ul class="slider__list">
+              <li class="card--large" aria-label="Показать больше">
+                <img
+                  src="{% static 'assets/images/onboarding/1.png' %}"
+                  alt="Мероприятие 1 - Театральное представление"
+                />
+              </li>
+              <li class="slider__item" aria-label="Показать больше">
+                <img
+                  src="{% static 'assets/images/onboarding/2.png' %}"
+                  alt="Мероприятие 2 - Концерт"
+                />
+              </li>
+              <li class="slider__item" aria-label="Показать больше">
+                <img
+                  src="{% static 'assets/images/onboarding/3.png' %}"
+                  alt="Мероприятие 3 - Выставка"
+                />
+              </li>
+              <li class="slider__item" aria-label="Показать больше">
+                <img
+                  src="{% static 'assets/images/onboarding/4.png' %}"
+                  alt="Мероприятие 4 - Гастрономическое событие"
+                />
+              </li>
+              <li class="slider__item" aria-label="Показать больше">
+                <img
+                  src="{% static 'assets/images/onboarding/5.png' %}"
+                  alt="Мероприятие 5 - Спортивное мероприятие"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Бронь без хлопот -->
+      <section class="reservation">
+        <div class="container">
+          <div class="reservation__wrapper flex">
+            <div class="reservation__left">
+              <div class="reservation__title text-center mb-30">
+                <h1>Бронь без хлопот</h1>
+              </div>
+              <div class="reservation__text text-center">
+                <h3>
+                  Столик в ресторане, билет на концерт или место на
+                  мастер-классе. Всё бронируется быстро и просто, без лишних
+                  шагов
+                </h3>
+              </div>
+              <img
+                src="{% static 'assets/images/onboarding/tickets.svg' %}"
+                alt="Иллюстрация билетов и бронирования"
+              />
+            </div>
+
+            <div class="reservation__right">
+              <div class="reservation__info-top">
+                <h3>3 простых шага</h3>
+                <ul class="info__list top">
+                  <li class="info__item">
+                    <h4 class="info__title">Выберите мероприятие</h4>
+                    <p class="info__text">в афише или через поиск</p>
+                  </li>
+                  <li class="info__item">
+                    <h4 class="info__title">Подтвердите детали</h4>
+                    <p class="info__text">Количество гостей и мест</p>
+                  </li>
+                  <li class="info__item">
+                    <h4 class="info__title">Получите билет</h4>
+                    <p class="info__text">Билет/бронь в вашем кошельке</p>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="reservation__info-bottom">
+                <h3>Все включено</h3>
+                <ul class="info__list bottom">
+                  <li class="info__item">
+                    <h4 class="info__title">Все билеты в одном месте</h4>
+                    <p class="info__text">Билеты, столики, мастер-классы</p>
+                  </li>
+                  <li class="info__item">
+                    <h4 class="info__title">Прозрачные цены</h4>
+                    <p class="info__text">Никаких скрытых платежей</p>
+                  </li>
+                  <li class="info__item">
+                    <h4 class="info__title">Умные напоминания</h4>
+                    <p class="info__text">Не пропустите важное событие</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Откройте город заново -->
+      <section class="city">
+        <div class="container">
+          <div class="city__inner">
+            <div class="city__img-top">
+              <img src="{% static 'assets/images/onboarding/sity-img.jpg' %}" alt="" />
+            </div>
+            <div class="city__img-bottom">
+              <div class="city__item">
+                <img src="{% static 'assets/images/onboarding/sity-img.jpg' %}" alt="" />
+              </div>
+              <div class="city__item">
+                <img src="{% static 'assets/images/onboarding/sity-img.jpg' %}" alt="" />
+              </div>
+              <div class="city__item">
+                <img src="{% static 'assets/images/onboarding/sity-img.jpg' %}" alt="" />
+              </div>
+            </div>
+            <div class="city__content">
+              <div class="city__title text-center mb-30">
+                <h1>События вашего города</h1>
+              </div>
+              <div class="city__text">
+                <h3>
+                  Откройте город заново. Найдите свои любимые места и создавайте
+                  воспоминания с UParty
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- ========== POPUPS ========== -->
+
+    <div class="uparty-overlay"></div>
+
+    <!-- LOGIN MODAL -->
+    <div class="uparty-modal" id="loginModal">
+      <button class="uparty-modal__close" onclick="closeModals()">
+        <img src="{% static 'assets/images/icons/close-darck.svg' %}" alt="" />
+      </button>
+
+      <h3 class="uparty-modal__title mb-30">Добро пожаловать в UParty</h3>
+
+      <label class="uparty-modal__label"><p>Имя</p></label>
+      <input
+        type="text"
+        class="uparty-modal__input mb-20"
+        placeholder="Введите ваше имя"
+      />
+
+      <label class="uparty-modal__label"><p>Пароль</p></label>
+      <div class="uparty-password">
+        <input
+          type="password"
+          class="uparty-modal__input"
+          placeholder="Введите ваш пароль"
+        />
+        <div
+          class="uparty-password__eye"
+          onclick="togglePassword(this)"
+          aria-label="Показать пароль"
+          ><img src="{% static 'assets/images/icons/eye-icon.svg' %}" alt=""></div
+        >
+      </div>
+
+      <!-- LOGIN REDIRECT -->
+      <a href="./home.html" class="uparty-btn btn btn-yellow">Войти</a>
+
+      <div class="uparty-divider text-center mb-20 mt-20"><h4>ИЛИ</h4></div>
+
+      <button class="uparty-btn btn btn-white">Вход другим способом</button>
+
+      <p class="uparty-modal__text mt-20" onclick="openRegisterModal()">
+        Ещё не зарегистрировались?<span class="uparty-link">Регистрация</span>
+      </p>
+
+      <p class="uparty-modal__text text--partner">
+        Вход для партнеров платформы
+      </p>
+    </div>
+
+    <!-- REGISTER MODAL -->
+    <div class="uparty-modal" id="registerModal">
+      <button class="uparty-modal__close" onclick="closeModals()">
+        <img src="{% static 'assets/images/icons/close-darck.svg' %}" alt="" />
+      </button>
+
+      <h3 class="uparty-modal__title">Добро пожаловать в UParty</h3>
+      <p class="uparty-modal__subtitle text-center">
+        Находи события под любое настроение
+      </p>
+
+      <label class="uparty-modal__label"><p>*Имя</p></label>
+      <input
+        type="text"
+        class="uparty-modal__input mb-10"
+        placeholder="Введите ваше имя"
+      />
+
+      <label class="uparty-modal__label"><p>*Пароль</p></label>
+      <div class="uparty-password">
+        <input
+          type="password"
+          class="uparty-modal__input"
+          placeholder="Придумайте пароль"
+        />
+        <div
+          class="uparty-password__eye"
+          onclick="togglePassword(this)"
+          aria-label="Показать пароль"
+          ><img src="{% static 'assets/images/icons/eye-icon.svg' %}" alt=""></div
+        >
+      </div>
+
+      <label class="uparty-modal__label"><p>*Адрес электронной почты</p></label>
+      <input
+        type="email"
+        class="uparty-modal__input mb-10"
+        placeholder="example@mail.com"
+      />
+
+      <label class="uparty-checkbox">
+        <input type="checkbox" checked />
+        <p>Соглашение о пользовании платформой</p>
+      </label>
+
+      <a
+        href="./home.html"
+        class="uparty-btn btn btn-yellow">
+        Далее
+      </a>
+
+      <div class="uparty-divider text-center mb-10 mt-10"><h4>ИЛИ</h4></div>
+
+      <button class="uparty-btn btn btn-white">Вход другим способом</button>
+
+      <p class="uparty-modal__text mt-20" onclick="openLoginModal()">
+        Уже зарегистрировались?
+        <span class="uparty-link">Войти</span>
+      </p>
+    </div>
+
+    <script>
+        window.STATIC_URL = "{% static '' %}";
+    </script>
+
+    <script src="{% static 'scripts/index.js' %}"></script>
+  </body>
+</html>

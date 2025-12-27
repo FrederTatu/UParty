@@ -1,0 +1,473 @@
+/* ========== HEADER ========== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-color);
+  z-index: 1000;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(30, 30, 30, 0.1);
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.header_logo {
+  flex-shrink: 0;
+}
+
+.header_user-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__btn {
+  padding: 12px 30px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+}
+
+.header__btn.btn-white {
+  margin-right: 0;
+}
+
+.header__btn h4 {
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ========== MAIN ========== */
+.main {
+  margin-top: 100px;
+}
+
+/* ========== PLAYBILL SECTION ========== */
+.playbill {
+  padding: 50px 0 150px 0;
+  background: url(../assets/images/decor/onboarding-decor.svg) 50% 20% no-repeat;
+}
+
+.playbill__title h1 {
+  background-color: var(--pink);
+  color: var(--bg-color);
+  padding: 10px 35px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.playbill__text h3 {
+  color: var(--text-color);
+  font-weight: 500;
+  margin: 0 auto;
+}
+
+.playbill__slider {
+  margin-top: 40px;
+}
+
+.slider__list {
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.slider__list::-webkit-scrollbar {
+  display: none;
+}
+
+.slider__list li {
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid var(--text-color);
+  box-shadow: 5px 5px 0 var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: var(--text-color);
+}
+
+.slider__list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 10px 10px 0 var(--text-color);
+}
+
+.slider__list li:active {
+  transform: translateY(0);
+  box-shadow: 3px 3px 0 var(--text-color);
+}
+
+.card--large {
+  width: 670px;
+  height: 440px;
+}
+
+.slider__item {
+  width: 140px;
+  height: 440px;
+}
+
+.card--large.inactive,
+.slider__item.inactive {
+  width: 140px;
+  opacity: 0.7;
+}
+
+.slider__item.active {
+  width: 670px;
+  opacity: 1;
+}
+
+.slider__list img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ========== RESERVATION SECTION ========== */
+.reservation {
+  padding: 0 0 150px 0;
+  background: url(../assets/images/decor/onboarding-decor.svg) 50% 20% no-repeat;
+}
+
+.reservation__wrapper {
+  gap: 30px;
+  align-items: stretch;
+}
+
+.reservation__left {
+  flex: 1;
+  background-color: var(--text-color);
+  border-radius: 10px;
+  padding: 60px 30px 0 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.reservation__left img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin-top: 40px;
+}
+
+.reservation__title h1 {
+  background-color: var(--pink);
+  color: var(--bg-color);
+  padding: 10px 35px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.reservation__text h3 {
+  color: var(--bg-color);
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.reservation__right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.reservation__info-top {
+  background-color: var(--purple);
+  border-radius: 10px;
+  padding: 30px 40px;
+  border: 2px solid var(--text-color);
+  box-shadow: 8px 8px 0 var(--text-color);
+}
+
+.reservation__info-bottom {
+  background-color: var(--yellow);
+  border-radius: 10px;
+  padding: 30px 40px;
+  border: 2px solid var(--text-color);
+  box-shadow: 8px 8px 0 var(--text-color);
+}
+
+.reservation__info-top h3,
+.reservation__info-bottom h3 {
+  color: var(--bg-color);
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.reservation__info-bottom h3 {
+  color: var(--text-color);
+}
+
+.info__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info__item {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 20px;
+}
+
+.info__item:last-child {
+  margin-bottom: 0;
+}
+
+.info__item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--bg-color);
+  border-radius: 50%;
+}
+
+.info__list.bottom .info__item::before {
+  background-color: var(--text-color);
+}
+
+.info__title {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.reservation__info-top .info__title,
+.reservation__info-top .info__text {
+  color: var(--bg-color);
+}
+
+.reservation__info-bottom .info__title,
+.reservation__info-bottom .info__text {
+  color: var(--text-color);
+}
+
+.info__text {
+  font-family: var(--font-secondary);
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* ========== CITY SECTION ========== */
+.city {
+  background: url(../assets/images/decor/onboarding-decor.svg) 50% 20% no-repeat;
+  padding-bottom: 150px;
+}
+
+.city__inner {
+  position: relative;
+}
+
+.city__img-top {
+  height: 103px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.city__img-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+.city__item {
+  margin-right: 20px;
+}
+.city__item:first-child {
+  width: 354px;
+  height: 396px;
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+}
+.city__item:first-child img {
+  max-width: 1230px;
+  position: absolute;
+  top: -123px;
+}
+
+.city__item:nth-child(2) {
+  width: 354px;
+  height: 396px;
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+}
+.city__item:nth-child(2) img {
+  max-width: 1230px;
+  position: absolute;
+  top: -123px;
+  left: -374px;
+}
+
+.city__item:last-child {
+  margin-right: 0;
+  width: 490px;
+  height: 610px;
+  overflow: hidden;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  position: relative;
+}
+.city__item:last-child img {
+  max-width: 1230px;
+  position: absolute;
+  top: -123px;
+  left: -748px;
+}
+
+.city__content {
+  position: absolute;
+  background-color: var(--bg-color);
+  bottom: 0px;
+  border-radius: 0 10px 0 0;
+  padding: 20px 20px 0 0;
+  height: 215px;
+}
+.city__title h1 {
+  background-color: var(--pink);
+  color: var(--bg-color);
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
+.city__text {
+  max-width: 820px;
+}
+
+/* ================= POPUPS ================= */
+
+.uparty-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.uparty-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.uparty-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  max-width: calc(100% - 40px);
+  background-color: var(--bg-color);
+  border-radius: 20px;
+  padding: 30px 40px;
+  z-index: 2001;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.uparty-modal.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.uparty-modal__close {
+  justify-items: flex-end;
+  margin-bottom: 20px;
+}
+
+/* ===== CONTENT ===== */
+.uparty-modal__subtitle {
+  opacity: 0.8;
+  margin-bottom: 24px;
+}
+
+.uparty-modal__label {
+  margin-bottom: 6px;
+}
+
+.uparty-modal__input {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: 2px solid var(--text-color);
+  font-size: calc(var(--font-size-base) * 0.8);
+  transition: 0.2s;
+}
+.uparty-modal__input:focus {
+  border-color: var(--purple);
+}
+.uparty-modal__input::placeholder {
+  font-size: calc(var(--font-size-base) * 0.7);
+  font-weight: 500;
+}
+/* ===== PASSWORD ===== */
+
+.uparty-password {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.uparty-password__eye {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+/* ===== BUTTONS ===== */
+
+.uparty-btn {
+  font-size: calc(var(--font-size-base) * 0.8);
+  font-family: var(--font-primary);
+}
+
+/* ===== TEXT ===== */
+
+.uparty-modal__text {
+  text-align: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.uparty-link {
+  color: var(--purple);
+}
+.text--partner {
+  margin-top: 10px;
+}
+/* ===== CHECKBOX ===== */
+
+.uparty-checkbox {
+  display: flex;
+  gap: 8px;
+  font-size: calc(var(--font-size-base) * 0.75);
+  margin-bottom: 15px;
+}
+.uparty-checkbox input {
+  accent-color: var(--purple);
+}

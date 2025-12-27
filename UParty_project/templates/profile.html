@@ -1,0 +1,354 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'assets/images/icons/user-profile.svg' %}" type="image/svg+xml">
+    <link rel="stylesheet" href="{% static 'styles/base/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/base/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+    <title>UPARTY - Профиль</title>
+</head>
+<body>
+	 <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="./home.html" class="header__logo">
+                    <img src="{% static 'assets/images/icons/logo-icon.svg' %}" alt="UParty" />
+                </a>
+				<div class="header__search">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Поиск" id="searchInput">
+                        <button class="search-button" id="searchBtn" aria-label="Найти">
+                            <img src="{% static 'assets/images/icons/search-icon.svg' %}" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="header__user-menu">
+                    <button class="header__notify-btn" aria-label="Уведомления">
+                        <img src="{% static 'assets/images/icons/notification-icon.svg' %}" alt="" />
+                    </button>
+                    <div class="header__account">
+                        <button class="header__avatar" aria-label="Профиль">
+                            <img src="{% static 'assets/images/icons/user-profile.svg' %}" alt="" />
+                        </button>
+                        <ul class="header__dropdown">
+                            <li><a href="./profile.html">Бронь и билеты</a></li>
+                            <li><a href="./index.html" class="logout">Выйти</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <!-- Профиль пользователя -->
+        <section class="profile mt-60">
+            <div class="container">
+                <div class="profile__inner flex">
+                    <div class="profile__info flex">
+                        <div class="profile__info-avatar">
+                            <img class="plug-img" src="{% static 'assets/images/icons/user-profile.svg' %}" alt="Аватар пользователя">
+                        </div>
+                        <div class="profile__info-name">
+                            <h3>Имя пользователя</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="profile__edit">
+                        <button class="profile__edit-btn" id="editDropdownBtn" aria-label="Редактировать профиль">
+                            <img src="{% static 'assets/images/icons/edit-icon.svg' %}" alt="Редактировать">
+                            <h4>Редактировать</h4>
+                        </button>
+                        
+                        <div class="edit-dropdown" id="editDropdown">
+                            <div class="edit-dropdown__item" data-action="name">
+                                <p>Данные профиля</p>
+                            </div>
+                            <div class="edit-dropdown__item" data-action="avatar">
+                                <p>Обновить фотографию</p>
+                            </div>
+                            <div class="edit-dropdown__item" data-action="category">
+                                <p>Обновить категории</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Попап редактирования профиля -->
+        <div class="profile-popup-overlay" id="profilePopup">
+            <div class="profile-popup-container">
+                <div class="profile-popup-header mb-30">
+                    <h3 class="profile-popup-title">Данные профиля</h3>
+                    <button class="profile-popup-close" id="profilePopupClose" aria-label="Закрыть">
+                        <img src="{% static 'assets/images/icons/close-darck.svg' %}" alt="Закрыть">
+                    </button>
+                </div>
+                
+                <div class="profile-popup-content">
+                    <div class="profile-form-group">
+                        <label class="profile-form-label">Имя</label>
+                        <input type="text" class="profile-form-input" id="profileName" placeholder="Введите ваше имя" value="">
+                    </div>
+                    
+                    <div class="profile-form-group">
+                        <label class="profile-form-label">Адрес электронной почты</label>
+                        <input type="email" class="profile-form-input" id="profileEmail" placeholder="example@mail.com" value="">
+                    </div>
+                    
+                    <div class="profile-form-group">
+                        <label class="profile-form-label">Дата рождения</label>
+                        <input type="text" class="profile-form-input" id="profileBirthDate" placeholder="00.00.00г." value="">
+                    </div>
+                    
+                    <div class="toggle-group">
+                        <p class="toggle-label">Уведомления</p>
+                        <div class="toggle-container">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="notificationsToggle" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-status on" id="toggleStatus"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-popup-footer">
+                    <button class="profile-save-btn btn btn-yellow" id="profileSaveBtn">
+                        Сохранить
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Попап категорий -->
+        <div class="category-popup-overlay" id="categoryPopup">
+            <div class="category-popup-container">
+                <div class="category-popup-header mb-30">
+                    <h3 class="category-popup-title">Категории</h3>
+                    <button class="category-popup-close" id="categoryPopupClose" aria-label="Закрыть">
+                        <img src="{% static 'assets/images/icons/close-darck.svg' %}" alt="Закрыть">
+                    </button>
+                </div>
+                
+                <div class="category-popup-content mb-20" id="categoriesList">
+                    <!-- Категории будут добавлены через JS -->
+                </div>
+                
+                <div class="category-popup-footer">
+                    <button class="category-save-btn btn btn-yellow" id="categorySaveBtn">
+                        Сохранить
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Скрытый инпут для аватара -->
+        <input type="file" id="avatarInput" accept="image/*" style="display: none">
+
+        <!-- Бронь и билеты -->
+        <section class="reservations mt-50">
+            <div class="container">
+                <h2 class="title__top mb-30">Бронь и билеты</h2>
+                
+                <!-- Бронь -->
+                <div class="title-pink mb-30">
+                    <h4>Бронь</h4>
+                </div>
+                
+                <div class="cards-row">
+                    <button class="arrow-btn" aria-label="Предыдущие">
+                        <img src="{% static 'assets/images/icons/arrow-prev.svg' %}" alt="Предыдущий">
+                    </button>
+                    
+                    <div class="card-grid">
+                        <div class="events__item" data-event-id="1">
+                            <img src="{% static 'assets/images/events/1.png' %}" alt="Призрак оперы">
+                            <div class="events__caption">
+                                <div class="events__caption-title">
+                                    <h3>Призрак оперы</h3>
+                                </div>
+                                <div class="events__caption-date">
+                                    <h4>09.02.26</h4>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="events__item" data-event-id="2">
+                            <img src="{% static 'assets/images/events/2.png' %}" alt="Лебединое озеро">
+                            <div class="events__caption">
+                                <div class="events__caption-title">
+                                    <h3>Лебединое озеро</h3>
+                                </div>
+                                <div class="events__caption-date">
+                                    <h4>20.12.24</h4>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="events__item" data-event-id="3">
+                            <img src="{% static 'assets/images/events/3.png' %}" alt="Ромео и Джульетта">
+                            <div class="events__caption">
+                                <div class="events__caption-title">
+                                    <h3>Ромео и Джульетта</h3>
+                                </div>
+                                <div class="events__caption-date">
+                                    <h4>22.12.24</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="arrow-btn" aria-label="Следующие">
+                        <img src="{% static 'assets/images/icons/arrow-next.svg' %}" alt="Следующий">
+                    </button>
+                </div>
+
+                <!-- Билеты -->
+                <div class="tickets mt-50">
+                    <div class="title-pink mb-30">
+                        <h4>Билеты</h4>
+                    </div>
+                    
+                    <div class="cards-row">
+                        <button class="arrow-btn" aria-label="Предыдущие">
+                            <img src="{% static 'assets/images/icons/arrow-prev.svg' %}" alt="Предыдущий">
+                        </button>
+                        
+                        <div class="card-grid">
+                            <div class="events__item" data-event-id="4">
+                                <img src="{% static 'assets/images/events/4.png' %}" alt="Кармен">
+                                <div class="events__caption">
+                                    <div class="events__caption-title">
+                                        <h3>Кармен</h3>
+                                    </div>
+                                    <div class="events__caption-date">
+                                        <h4>25.12.24</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="events__item" data-event-id="5">
+                                <img src="{% static 'assets/images/events/5.png' %}" alt="Жизель">
+                                <div class="events__caption">
+                                    <div class="events__caption-title">
+                                        <h3>Жизель</h3>
+                                    </div>
+                                    <div class="events__caption-date">
+                                        <h4>28.12.24</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="events__item" data-event-id="6">
+                                <img src="{% static 'assets/images/events/6.png' %}" alt="Дон Кихот">
+                                <div class="events__caption">
+                                    <div class="events__caption-title">
+                                        <h3>Дон Кихот</h3>
+                                    </div>
+                                    <div class="events__caption-date">
+                                        <h4>30.12.24</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="arrow-btn" aria-label="Следующие">
+                            <img src="{% static 'assets/images/icons/arrow-next.svg' %}" alt="Следующий">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Модальное окно с информацией о мероприятии -->
+        <div class="blur-background" id="blurBackground"></div>
+        
+        <div class="popup-container" id="popup">
+            <div class="popup-header">
+                <button class="close-btn" id="closeBtn" aria-label="Закрыть">
+                    <img src="{% static 'assets/images/icons/close-icon.svg' %}" alt="Закрыть">
+                </button>
+            </div>
+            
+            <!-- Слайдер -->
+            <div class="slider-container">
+                <div class="slider-track" id="sliderTrack"></div>
+                <div class="slider-nav">
+                    <button class="slider-btn" id="prevBtn" aria-label="Предыдущее фото">
+                        <img src="{% static 'assets/images/icons/arrow-prev.svg' %}" alt="Предыдущее">
+                    </button>
+                    <button class="slider-btn" id="nextBtn" aria-label="Следующее фото">
+                        <img src="{% static 'assets/images/icons/arrow-next.svg' %}" alt="Следующее">
+                    </button>
+                </div>
+                <div class="slider-dots" id="sliderDots"></div>
+                <div class="age-restriction" id="ageRestriction">0+</div>
+            </div>
+            
+            <div class="event-header flex">
+                <h3 class="event-title" id="eventTitle">Щелкунчик</h3>
+                <div class="event-date" id="eventDate">15 декабря 2024, 19:00</div>
+            </div>
+            
+            <div class="event-info">
+                <h4 class="event-description mb-40" id="eventDescription">
+                    Волшебная рождественская сказка о девочке Мари и ее любимой игрушке Щелкунчике. Прекрасная музыка Чайковского, изысканные костюмы и захватывающая хореография перенесут вас в мир чудес и волшебства.
+                </h4>
+                
+                <div class="event-footer flex mb-50">
+                    <div class="event-price" id="eventPrice">
+                        1500 <span>руб.</span>
+                    </div>
+                    <button class="event-btn btn-yellow" id="detailsBtn">
+                        <h4>Подробнее</h4>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner flex">
+                <div class="footer__logo flex">
+                    <a href="./home.html" class="footer__logo-link">
+                        <img src="{% static 'assets/images/icons/logo-icon.svg' %}" alt="UParty логотип">
+                    </a>
+                    <p>© UParty (© 2025-2026, IT ISDO) Все права защищены.</p>
+                </div>
+                
+                <div class="footer__info flex">
+                    <a href="tel:88005553535" class="footer__info-link">
+                        <h4>Тел: 8 (800) 555-35-35</h4>
+                    </a>
+                    <a href="#" class="footer__info-link">
+                        <h4>Адрес: ул. Северный Венец, 32</h4>
+                    </a>
+                    <a href="#" class="footer__info-link">
+                        <h4>Скачать приложение</h4>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer__links flex">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Пользовательское соглашение</a>
+                <a href="#">Контакты</a>
+                <a href="#">Поддержка</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.STATIC_URL = "{% static '' %}";
+    </script>
+
+    <script src="{% static 'scripts/profile.js' %}"></script>
+</body>
+</html>

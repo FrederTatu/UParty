@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="{% static 'assets/images/icons/user-profile.svg' %}"
+      type="image/svg+xml"
+    />
+    <link rel="stylesheet" href="{% static 'styles/base/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/base/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/base/variables.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}" />
+    <title>UPARTY – Найди свой Vibe</title>
+  </head>
+
+  <body>
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="./home.html" class="header__logo">
+                    <img src="{% static 'assets/images/icons/logo-icon.svg' %}" alt="UParty" />
+                </a>
+                <div class="header__user-menu">
+                    <button class="header__notify-btn" aria-label="Уведомления">
+                        <img src="{% static 'assets/images/icons/notification-icon.svg' %}" alt="" />
+                    </button>
+                    <div class="header__account">
+                        <button class="header__avatar" aria-label="Профиль">
+                            <img src="{% static 'assets/images/icons/user-profile.svg' %}" alt="" />
+                        </button>
+                        <ul class="header__dropdown">
+                            <li><a href="./profile.html">Бронь и билеты</a></li>
+                            <li><a href="./index.html" class="logout">Выйти</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Поиск -->
+        <section class="search-section mt-60">
+            <div class="container">
+                <h2 class="search__title text-center">Что-то ищите под настроение?</h2>
+                
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Поиск" id="searchInput">
+                    <button class="search-button" id="searchBtn" aria-label="Найти">
+                        <img src="{% static 'assets/images/icons/search-icon.svg' %}" alt="">
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Слоган -->
+        <section class="slogan-section mt-50">
+            <div class="container">
+                <img class="slogan-img" src="{% static 'assets/images/slogan.svg' %}" alt="">
+            </div>
+        </section>
+
+        <!-- Категории -->
+        <section class="categories-section mt-50">
+            <div class="container">
+                <div class="title-pink mb-30">
+                    <h4>Категории под настроение</h4>
+                </div>
+                
+                <div class="categories__slider">
+                    <button class="slider-arrow arrow-left" id="prevArrow" aria-label="Предыдущие">
+                        <img src="{% static 'assets/images/icons/arrow-prev.svg' %}" alt="">
+                    </button>
+                    
+                    <div class="slider__wrapper" id="categorySlider">
+                        <!-- Категории загружаются через JS -->
+                    </div>
+                    
+                    <button class="slider-arrow arrow-right" id="nextArrow" aria-label="Следующие">
+                        <img src="{% static 'assets/images/icons/arrow-next.svg' %}" alt="">
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- События -->
+        <section class="events-section mt-50">
+            <div class="container">
+                <div class="events__top flex mb-30">
+                    <div class="title-pink">
+                        <h4>События по предпочтениям</h4>
+                    </div>
+                    
+                    <!-- Фильтр -->
+                    <div class="filter">
+                        <div class="filter__select flex" id="filterSelect">
+                            <h4 class="filter__select-title">Сегодня</h4>
+                            <span class="filter__arrow" id="filterArrow">
+                                <img src="{% static 'assets/images/icons/arrow-filter.svg' %}" alt="">
+                            </span>
+                        </div>
+                        
+                        <ul class="filter__option hidden" id="filterOptions">
+                            <li class="filter__option-item active" data-value="Сегодня">
+                                <p>Сегодня</p>
+                            </li>
+                            <li class="filter__option-item" data-value="Завтра">
+                                <p>Завтра</p>
+                            </li>
+                            <li class="filter__option-item" data-value="На неделе">
+                                <p>На неделе</p>
+                            </li>
+                            <li class="filter__option-item" data-value="В этом месяце">
+                                <p>В этом месяце</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Сетка событий -->
+                <div class="events__card">
+                    <ul class="card__inner" id="eventsGrid">
+                        <!-- События загружаются через JS -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner flex">
+                <div class="footer__logo flex">
+                    <a href="./home.html" class="footer__logo-link">
+                        <img src="{% static 'assets/images/icons/logo-icon.svg' %}" alt="UParty логотип">
+                    </a>
+                    <p>© UParty (© 2025-2026, IT ISDO) Все права защищены.</p>
+                </div>
+
+                <div class="footer__info flex">
+                    <a href="tel:88005553535" class="footer__info-link">
+                        <h4>Тел: 8 (800) 555-35-35</h4>
+                    </a>
+                    <a href="#" class="footer__info-link">
+                        <h4>Адрес: ул. Северный Венец, 32</h4>
+                    </a>
+                    <a href="#" class="footer__info-link">
+                        <h4>Скачать приложение</h4>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer__links flex">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Пользовательское соглашение</a>
+                <a href="#">Контакты</a>
+                <a href="#">Поддержка</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.STATIC_URL = "{% static '' %}";
+    </script>
+
+    <script src="{% static 'scripts/home.js' %}"></script>
+  </body>
+</html>

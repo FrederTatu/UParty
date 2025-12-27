@@ -1,0 +1,102 @@
+/* ========== LAYOUT & UTILITIES ========== */
+.container {
+    width: min(90%, 1200px);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.mb-60 { margin-bottom: 60px; }
+.mb-50 { margin-bottom: 50px; }
+.mb-40 { margin-bottom: 40px; }
+.mb-30 { margin-bottom: 30px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-10 { margin-bottom: 10px; }
+
+.mt-60 { margin-top: 60px; }
+.mt-50 { margin-top: 50px; }
+.mt-40 { margin-top: 40px; }
+.mt-30 { margin-top: 30px; }
+.mt-20 { margin-top: 20px; }
+.mt-10 { margin-top: 10px; }
+
+.flex { display: flex; }
+.grid { display: grid; }
+.hidden { display: none !important; }
+.visible { display: block !important; }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+body.no-scroll { overflow: hidden; }
+
+/* ========== COMPONENTS ========== */
+/* Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 35px;
+    border: 2px solid var(--text-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-yellow {
+    background-color: var(--yellow);
+    color: var(--text-color);
+    box-shadow: var(--shadow);
+}
+
+.btn-yellow:hover {
+    background-color: var(--yellow-hover);
+}
+
+.btn-yellow:active {
+    background-color: var(--yellow-active);
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+.btn-pink {
+    background-color: var(--pink);
+    color: var(--bg-color);
+    box-shadow: var(--shadow);
+}
+
+.btn-pink:hover {
+    background-color: var(--pink-hover);
+}
+
+.btn-pink:active {
+    background-color: var(--pink-active);
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+.btn-white {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    box-shadow: var(--shadow);
+}
+
+.btn-white:hover {
+    background-color: #E9E9E9;
+}
+
+.btn-white:active {
+    background-color: #DBDBDB;
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+/* Title Component */
+.title-pink {
+    background-color: var(--pink);
+    color: var(--bg-color);
+    padding: 10px 35px;
+    border-radius: 20px;
+    display: inline-block;
+}

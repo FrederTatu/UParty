@@ -1,0 +1,401 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'assets/images/icons/user-profile.svg' %}" type="image/svg+xml">
+    <link rel="stylesheet" href="{% static 'styles/base/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/base/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/events.css' %}">
+    <title>UPARTY — Призрак оперы</title>
+</head>
+<body>
+    <!-- Единый хедер как в home и categories -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="./home.html" class="header__logo">
+                    <img src="{% static 'assets/images/icons/logo-icon.svg' %}" alt="UParty" />
+                </a>
+                <div class="header__user-menu">
+                    <button class="header__notify-btn" aria-label="Уведомления">
+                        <img src="{% static 'assets/images/icons/notification-icon.svg' %}" alt="" />
+                    </button>
+                    <div class="header__account">
+                        <button class="header__avatar" aria-label="Профиль">
+                            <img src="{% static 'assets/images/icons/user-profile.svg' %}" alt="" />
+                        </button>
+                        <ul class="header__dropdown">
+                            <li><a href="./profile.html">Бронь и билеты</a></li>
+                            <li><a href="./index.html" class="logout">Выйти</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Заголовок события -->
+            <div class="content__title mt-60">
+                <h1>ПРИЗРАК ОПЕРЫ</h1>
+            </div>
+
+            <!-- Слайдер и информация о событии -->
+            <div class="event__info-grid mt-30">
+                <!-- Слайдер -->
+                <div class="event__slider">
+                    <div class="slider-container">
+                        <div class="main-slider" id="mainSlider"></div>
+                        <div class="slider-controls">
+                            <button class="nav-btn prev-btn" id="prevBtn" aria-label="Предыдущее фото">
+                                <img src="{% static 'assets/images/icons/arrow-prev.svg' %}" alt="">
+                            </button>
+                            <div class="thumbnails" id="thumbnails"></div>
+                            <button class="nav-btn next-btn" id="nextBtn" aria-label="Следующее фото">
+                                <img src="{% static 'assets/images/icons/arrow-next.svg' %}" alt="">
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Полноэкранный режим слайдера -->
+                    <div class="fullscreen" id="fullscreenSlider">
+                        <div class="fullscreen-bg" id="fullscreenBg"></div>
+                        <button class="close-btn" id="closeBtn" aria-label="Закрыть">
+                            <img src="{% static 'assets/images/icons/close-icon.svg' %}" alt="">
+                        </button>
+                        <div class="fullscreen-slider" id="fullscreenSliderContainer"></div>
+                        <button class="nav-btn-fullscreen prev-btn-fullscreen" id="fullscreenPrevBtn" aria-label="Предыдущее фото">
+                            <img src="{% static 'assets/images/icons/arrow-prev.svg' %}" alt="">
+                        </button>
+                        <button class="nav-btn-fullscreen next-btn-fullscreen" id="fullscreenNextBtn" aria-label="Следующее фото">
+                            <img src="{% static 'assets/images/icons/arrow-next.svg' %}" alt="">
+                        </button>
+                        <div class="fullscreen-thumbnails" id="fullscreenThumbnails"></div>
+                    </div>
+                </div>
+
+                <!-- Информация о событии -->
+                <div class="event__details">
+                    <div class="event__details-date">
+                        <h3>09.02.25 | 19:00</h3>
+                        <h3>Адрес: ул. Спасская, 12А</h3>
+                        <div class="event__age mt-20">
+                            <h4>12+</h4>
+                        </div>
+                    </div>
+                    <div class="event__tags mt-20">
+                        <h4>#УютнаяАтмосфера</h4>
+                        <h4>#ХорошееЗаведение</h4>
+                        <div class="event__action mt-20">
+                            <button class="buy-btn btn btn-yellow" id="buyTicketBtn">
+                                Купить билет
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Описание события -->
+            <section class="description mt-50">
+                <div class="description__title">
+                    <h3>О событии</h3>
+                </div>
+                <div class="description__text mt-30">
+                    <h4>
+                        Шедевр, покоривший сердца миллионов зрителей по всему миру!
+                        Почувствуйте магию музыки двух великих композиторов: «Эндрю Ллойда
+                        Уэббера и Мори Йестона» — окунитесь в захватывающую историю любви,
+                        жизни и смерти.
+                    </h4>
+                    <h4>
+                        Основа сюжета — мелодраматические отношения начинающей певицы
+                        Кристин и влюблённых в неё покровителя «Оперы» графа де Шандо и её
+                        учителя музыки Эрика, имеющего причины скрывать лицо под маской.
+                    </h4>
+                </div>
+            </section>
+
+            <!-- Карта -->
+            <section class="map mt-50">
+                <div class="map__title mb-30">
+                    <h3>Местоположение</h3>
+                </div>
+                <div class="map__inner">
+                    <div class="map-constructor">
+                        <iframe
+                            src="https://yandex.ru/map-widget/v1/?um=constructor%3A3fb1cad61363fecd6f013b310cb9150d92d09c50373d557e07831eca20eda70a&amp;source=constructor"
+                            width="1230"
+                            height="705"
+                            frameborder="0"
+                            title="Карта местоположения события Призрак оперы"
+                        ></iframe>
+                        <a class="map-btn"
+                            href="https://yandex.ru/maps/195/ulyanovsk/?ll=48.403131%2C54.314194&mode=routes&rtext=~54.314953%2C48.401505&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D1034445542&z=14"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            <button class="btn btn-yellow">Построить маршрут</button>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Модальные окна для покупки билетов -->
+    
+    <!-- Модалка выбора мест -->
+    <div id="seatSelectionModal" class="modal">
+        <div class="modal-content content--first">
+            <div class="modal-header mb-40">
+                <div class="event-info">
+                    <div class="event-name">
+                        <h3 id="modalEventTitle">Призрак оперы 0+</h3>
+                    </div>
+                    <div class="event-date">
+                        <h4 id="modalEventDate">09.02.25 | 19:00</h4>
+                    </div>
+                </div>
+                <button class="modal__close-btn" id="closeSeatModalBtn" aria-label="Закрыть">
+                    <img src="{% static 'assets/images/icons/close-darck.svg' %}" alt="">
+                </button>
+            </div>
+            <div class="seating-area">
+                <div class="seats-container" id="seatsContainer"></div>
+                <div class="stage"><h4>СЦЕНА</h4></div>
+            </div>
+            <div class="seat-info mt-20">
+                <div class="selected-info">
+                    <div class="selected-info_row">
+                        <h4>Ряд: <span id="selectedRow">-</span></h4>
+                    </div>
+                    <div class="selected-info_seat">
+                        <h4>Место: <span id="selectedSeat">-</span></h4>
+                    </div>
+                    <div class="price">
+                        <h4>Стоимость: <span id="totalPrice">0</span> руб.</h4>
+                    </div>
+                </div>
+                <button class="confirm-btn btn btn-yellow" id="goToPaymentBtn">
+                    Купить
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модалка подтверждения отмены -->
+    <div id="cancelConfirmationModal" class="modal">
+        <div class="modal-content confirmation-modal">
+            <div class="confirmation-text mb-60">
+                <h3>Уверены, что хотите прекратить покупку?</h3>
+            </div>
+            <div class="confirmation-buttons">
+                <button class="cancel-btn btn btn-pink" id="cancelCloseBtn">
+                    Отмена
+                </button>
+                <button class="confirm-cancel-btn btn btn-yellow" id="confirmCancelBtn">
+                    Да, прекратить
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модалка выбора способа оплаты -->
+    <div id="paymentMethodModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal__title"><h3>Выберите способ оплаты</h3></div>
+                <button class="modal__close-btn" id="closePaymentMethodBtn" aria-label="Закрыть">
+                    <img src="{% static 'assets/images/icons/close-darck.svg' %}" alt="">
+                </button>
+            </div>
+            <div class="event-info mt-50">
+                <div class="event-name"><h3 id="paymentEventTitle">Призрак оперы 0+</h3></div>
+                <div class="event-name_payment" id="paymentDetails">
+                    <h3>
+                        Ряд: <span id="paymentRow">-</span>, Место:
+                        <span id="paymentSeat">-</span>
+                    </h3>
+                </div>
+            </div>
+            <div class="payment-methods-new mt-50">
+                <div class="payment-top-block btn-white" data-method="card">
+                    <div class="payment-text-info">
+                        <div><h3>Банковская карта</h3></div>
+                        <div><h4>Моментальная оплата</h4></div>
+                    </div>
+                    <div class="payment-horizontal-image">
+                        <img class="payment-horizontal-img" src="{% static 'assets/images/decor/cards.png' %}" alt="Карты">
+                    </div>
+                </div>
+                <div class="payment-bottom-row">
+                    <div class="payment-side-block btn-white" data-method="sbp">
+                        <div class="payment-side-image">
+                            <img class="payment-horizontal-img" src="{% static 'assets/images/decor/sbp.png' %}" alt="СБП">
+                        </div>
+                    </div>
+                    <div class="payment-side-block btn-white" data-method="sber">
+                        <div class="payment-side-image">
+                            <img class="payment-horizontal-img" src="{% static 'assets/images/decor/sber.png' %}" alt="Сбер">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-details mt-60">
+                <button class="back-btn btn btn-pink" id="backToSeatsBtn">
+                    Назад
+                </button>
+                <div class="price">
+                    <h3>Цена <span class="payment-amount" id="paymentAmount">0</span> руб.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модалка оплаты картой -->
+    <div id="cardPaymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal__title"><h3>Оплата банковской картой</h3></div>
+                <button class="modal__close-btn" id="closeCardModalBtn" aria-label="Закрыть">
+                    <img src="{% static 'assets/images/icons/close-darck.svg' %}" alt="">
+                </button>
+            </div>
+            <div class="card-payment mt-50">
+                <div class="card-logo mb-40">
+                    <div class="card-logo-icon">
+                        <img src="{% static 'assets/images/decor/TBank.png' %}" alt="T-Bank">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label><p>Номер карты</p></label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">
+                            <img src="{% static 'assets/images/icons/card-icon.svg' %}" alt="Карта">
+                        </span>
+                        <input class="card__input" type="text" placeholder="Введите номер карты" maxlength="19">
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="input-group">
+                        <label><p>Срок действия</p></label>
+                        <div class="validity-period">
+                            <div class="input-with-icon">
+                                <span class="input-icon">
+                                    <img src="{% static 'assets/images/icons/calendar-icon.svg' %}" alt="Календарь">
+                                </span>
+                                <input class="card__input" type="text" placeholder="ММ/ГГ" maxlength="5">
+                            </div>
+                            <div class="input-with-icon">
+                                <span class="input-icon">
+                                    <img src="{% static 'assets/images/icons/lock-icon.svg' %}" alt="Замок">
+                                </span>
+                                <input class="card__input" type="text" placeholder="CVC" maxlength="3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="save-card">
+                    <input type="checkbox" id="saveCard">
+                    <label for="saveCard"><p>Сохранить эту карту</p></label>
+                </div>
+                <div class="payment-amount modal__amount mb-40">
+                    <span>Сумма оплаты: <span id="cardPaymentAmount">0</span> ₽</span>
+                </div>
+            </div>
+            <div class="payment-details">
+                <button class="back-btn btn btn-pink" id="backToPaymentMethodBtn">
+                    Назад
+                </button>
+                <button class="confirm-btn btn btn-yellow" id="processPaymentBtn">
+                    Оплатить
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модалка успешной оплаты -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="success-content">
+                <div class="success-icon mb-40 mt-30">
+                    <img src="{% static 'assets/images/decor/success.png' %}" alt="успешно">
+                </div>
+                <div class="success-amount">
+                    <h3 id="successAmount">0 ₽</h3>
+                </div>
+                <div class="success-message mb-30">
+                    <h4>Платёж успешно завершен!</h4>
+                </div>
+                <div class="info-block info--top">
+                    <div class="info-row">
+                        <h4>Номер платежа:</h4>
+                        <span><p id="paymentNumber">#12345678</p></span>
+                    </div>
+                </div>
+                <div class="info-block mb-30">
+                    <div class="info-row">
+                        <h4>Продавец:</h4>
+                        <p>UParty</p>
+                    </div>
+                    <div class="info-row">
+                        <h4>Скидка:</h4>
+                        <p>15%</p>
+                    </div>
+                    <div class="info-row">
+                        <h4>Комиссия:</h4>
+                        <p>-</p>
+                    </div>
+                    <div class="info-row">
+                        <h4>Платёжная система:</h4>
+                        <p>T-Bank</p>
+                    </div>
+                </div>
+                <button class="return-btn btn btn-yellow" id="returnHomeBtn">
+                    Вернуться на главную
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner flex">
+                <div class="footer__logo flex">
+                    <a href="./home.html" class="footer__logo-link">
+                        <img src="{% static 'assets/images/icons/logo-icon.svg' %}" alt="UParty логотип">
+                    </a>
+                    <p>© UParty (© 2025-2026, IT ISDO) Все права защищены.</p>
+                </div>
+                <div class="footer__info flex">
+                    <a href="tel:88005553535" class="footer__info-link">
+                        <h4>Тел: 8 (800) 555-35-35</h4>
+                    </a>
+                    <a href="#" class="footer__info-link">
+                        <h4>Адрес: ул. Северный Венец, 32</h4>
+                    </a>
+                    <a href="#" class="footer__info-link">
+                        <h4>Скачать приложение</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="footer__links flex">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Пользовательское соглашение</a>
+                <a href="#">Контакты</a>
+                <a href="#">Поддержка</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.STATIC_URL = "{% static '' %}";
+    </script>
+
+    <script src="{% static 'scripts/events.js' %}"></script>
+</body>
+</html>

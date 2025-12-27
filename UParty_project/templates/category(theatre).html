@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'assets/images/icons/user-profile.svg' %}" type="image/svg+xml">
+    
+    <link rel="stylesheet" href="{% static 'styles/base/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/base/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/categories.css' %}">
+    
+    <title>UPARTY — Театральные представления</title>
+</head>
+
+<body>
+    <!-- Хедер с вашей структурой -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="./home.html" class="header__logo">
+                    <img src="{% static 'assets/images/icons/logo-icon.svg' %}" alt="UParty" />
+                </a>
+                <div class="header__user-menu">
+                    <button class="header__notify-btn" aria-label="Уведомления">
+                        <img src="{% static 'assets/images/icons/notification-icon.svg' %}" alt="" />
+                    </button>
+                    <div class="header__account">
+                        <button class="header__avatar" aria-label="Профиль">
+                            <img src="{% static 'assets/images/icons/user-profile.svg' %}" alt="" />
+                        </button>
+                        <ul class="header__dropdown">
+                            <li><a href="./profile.html">Бронь и билеты</a></li>
+                            <li><a href="./index.html" class="logout">Выйти</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Заголовок и фильтр -->
+            <div class="preferences flex mt-60">
+                <div class="title-pink">
+                    <h4>Театральные представления</h4>
+                </div>
+                
+                <!-- Фильтр -->
+                <div class="filter">
+                    <div class="filter__select flex" id="filterSelect">
+                        <h4 class="filter__select-title">Сегодня</h4>
+                        <span class="filter__arrow" id="filterArrow">
+                            <img src="{% static 'assets/images/icons/arrow-filter.svg' %}" alt="">
+                        </span>
+                    </div>
+                    
+                    <ul class="filter__option hidden" id="filterOptions">
+                        <li class="filter__option-item active" data-value="Сегодня">
+                            <p>Сегодня</p>
+                        </li>
+                        <li class="filter__option-item" data-value="Завтра">
+                            <p>Завтра</p>
+                        </li>
+                        <li class="filter__option-item" data-value="На неделе">
+                            <p>На неделе</p>
+                        </li>
+                        <li class="filter__option-item" data-value="В этом месяце">
+                            <p>В этом месяце</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Сетка мероприятий -->
+            <div class="events mt-30" id="eventsGrid">
+                <!-- Мероприятия загружаются через JS -->
+            </div>
+        </div>
+
+        <!-- Блюр фон для модалки -->
+        <div class="blur-background" id="blurBackground"></div>
+
+        <!-- Модальное окно с информацией о мероприятии -->
+        <div class="popup-container" id="popup">
+            <!-- Хедер модалки -->
+            <div class="popup-header">
+                <button class="close-btn" id="closeBtn" aria-label="Закрыть">
+                    <img src="{% static 'assets/images/icons/close-icon.svg' %}" alt="">
+                </button>
+            </div>
+
+            <!-- Слайдер изображений -->
+            <div class="slider-container">
+                <div class="slider-track" id="sliderTrack"></div>
+                
+                <div class="slider-nav">
+                    <button class="slider-btn" id="prevBtn" aria-label="Предыдущее фото">
+                        <img src="{% static 'assets/images/icons/arrow-prev.svg' %}" alt="">
+                    </button>
+                    <button class="slider-btn" id="nextBtn" aria-label="Следующее фото">
+                        <img src="{% static 'assets/images/icons/arrow-next.svg' %}" alt="">
+                    </button>
+                </div>
+                
+                <div class="slider-dots" id="sliderDots"></div>
+                <div class="age-restriction" id="ageRestriction">0+</div>
+            </div>
+
+            <!-- Информация о мероприятии -->
+            <div class="event-header flex">
+                <h3 class="event-title" id="eventTitle">Призрак оперы</h3>
+                <div class="event-date" id="eventDate">09.02.26, 19:00</div>
+            </div>
+
+            <div class="event-info">
+                <h4 class="event-description mb-40" id="eventDescription">
+                    Шедевр, покоривший сердца миллионов зрителей по всему миру!
+                    Почувствуйте магию музыки двух великих композиторов...
+                </h4>
+
+                <div class="event-footer flex mb-50">
+                    <div class="event-price" id="eventPrice">
+                        1500 <span>руб.</span>
+                    </div>
+                    <a href="./events1.html" class="event-btn btn-yellow" id="detailsBtn">
+                        <h4>Подробнее</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <!-- Верхняя часть футера -->
+            <div class="footer__inner flex">
+                <div class="footer__logo flex">
+                    <a href="./home.html" class="footer__logo-link">
+                        <img src="{% static 'assets/images/icons/logo-icon.svg' %}" alt="UParty логотип">
+                    </a>
+                    <p>© UParty (© 2025-2026, IT ISDO) Все права защищены.</p>
+                </div>
+
+                <div class="footer__info flex">
+                    <a href="tel:88005553535" class="footer__info-link">
+                        <h4>Тел: 8 (800) 555-35-35</h4>
+                    </a>
+                    <a href="#" class="footer__info-link">
+                        <h4>Адрес: ул. Северный Венец, 32</h4>
+                    </a>
+                    <a href="#" class="footer__info-link">
+                        <h4>Скачать приложение</h4>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Нижняя часть футера -->
+            <div class="footer__links flex">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Пользовательское соглашение</a>
+                <a href="#">Контакты</a>
+                <a href="#">Поддержка</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.STATIC_URL = "{% static '' %}";
+    </script>
+
+    <script src="{% static 'scripts/category(theatre).js' %}"></script>
+</body>
+</html>
